@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=medium-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Insulin Taken</title>
+		<script>
+		<!--
+function checkTime(i) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
+}		
+		function taken(whichacting)
+		{
+		var d = new Date();
+		var month = d.getUTCMonth() + 1; //months from 1-12
+		var day = d.getUTCDate();
+		var year = d.getUTCFullYear();
+		var h = d.getHours();
+		var m = d.getMinutes();
+		var s = d.getSeconds();
+		// add a zero in front of numbers<10
+		m = checkTime(m);
+		s = checkTime(s);
+		var timestring = year + "/" + month + "/" + day + " at " + h + ":" + m + ":" + s;
+		if(whichacting == 'shortacting')
+			{
+			localStorage.shortacting = timestring;
+			}
+		if(whichacting == 'longacting')
+			{
+			localStorage.longacting =  timestring;
+			}
+		writenotices()
+			}
+		function writenotices()
+			{
+			if(typeof localStorage.shortacting=='string')
+			{
+			document.getElementById("shortactingnotice").innerHTML='Short acting last taken <br /><span class="datetext">' + localStorage.shortacting + "</span>";
+			}
+			if(typeof localStorage.longacting=='string')
+			{
+			document.getElementById("longactingnotice").innerHTML='Long acting last taken <br /><span class="datetext">' + localStorage.longacting + "</span>";
+			}
+}			
+			
+		//-->
+		</script>
+    </head>
+    <body class="home" onload="writenotices()">
+	<p style="height:100px;"><a class="setbutton" style="background-color:#000099;" href="javascript:taken('shortacting')">TAKEN SHORT ACTING</a></p>
+	<p style="height:100px;"><a class="setbutton" style="background-color:#006600;" href="javascript:taken('longacting')">TAKEN LONG ACTING</a></p>
+	<p id="shortactingnotice" style="clear:both;background-color:#000099;color:#ffffff;padding:10px"></p>
+	<p id="longactingnotice"style="clear:both;background-color:#006600;color:#ffffff;padding:10px;"></p>
+
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+    </body>
+</html>
